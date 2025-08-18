@@ -1,3 +1,10 @@
 {
-    "workbench.preferredHighContrastLightColorTheme": "Default Light Modern"
+    "workbench.preferredHighContrastLightColorTheme": "Default Light Modern",
+    "python-envs.pythonProjects": [
+        {
+            "path": "watchlist-env",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
+        }
+    ]
 }
