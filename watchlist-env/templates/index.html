@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>{{ username }}的游戏列表</title>
-    <link rel="icon" href="{{ url_for('static',filename='favacon.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='style/css.css') }}">
-</head>
-<body>
-    <h2>{{ username }}'的游戏列表</h2>
-        <img alt="avatar" class='avatar' src="{{ url_for('static', filename='images/我是一个PNG示例图.png') }}" style="width: 50px; height: 50px;">
-    </h2>
-    <p>{{ games|length }} Titles</p>
-    <img alt="一寸照片样例.jpeg" class=totoro src="{{ url_for('static', filename='images/一寸照片样例.jpeg') }}" style="width: 50px; height: 50px;">
-    <ul class = 'game-list'>
-        {% for g in games %} 
-        <li>{{ g.gamename }} - {{ g.type }}</li>  
-        {% endfor %} 
-    </ul>
-    
-    <footer>
-        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
-    </footer>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="game-list">
+    {% for game in games %}
+    <li>{{ game.gamename }} - {{ game.type }}
+        <span class="float-right">
+            <a class="imdb" href="https://www.imdb.com/find?q={{ game.gamename }}" target="_blank" title="Find this movie on IMDb">IMDb</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+<img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}" title="to~to~ro~">
+
+{% endblock %}

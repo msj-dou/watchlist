@@ -24,7 +24,7 @@ def index():
     else:
         username = '游客'
         games = []
-    return render_template('index.html', username=username, games=games)
+    return render_template('index.html', games=games)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -76,3 +76,14 @@ def forge():
 
     db.session.commit()
     click.echo('Done.')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.context_processor
+def inject_user():
+    user = User.query.first()
+    if user:
+        return dict(username=user.username)
+    return dict(username='游客')
